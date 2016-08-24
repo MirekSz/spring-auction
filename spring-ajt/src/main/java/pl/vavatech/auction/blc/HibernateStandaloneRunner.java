@@ -21,6 +21,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import pl.vavatech.auction.blc.model.Auction;
 
+//https://docs.jboss.org/hibernate/orm/5.0/userGuide/en-US/html_single/#criteria
+//https://docs.jboss.org/hibernate/orm/5.0/userGuide/en-US/html_single/#hql
 @Configuration
 @PropertySource(value = { "classpath:config.properties" })
 public class HibernateStandaloneRunner {
@@ -43,8 +45,7 @@ public class HibernateStandaloneRunner {
 		LocalContainerEntityManagerFactoryBean emFactory = new LocalContainerEntityManagerFactoryBean();
 		emFactory.setPersistenceUnitName("auction");
 		emFactory.setDataSource(dataSource());
-		emFactory
-				.setPackagesToScan(new String[] { "pl.vavatech.auction.blc.model" });
+		emFactory.setPackagesToScan(new String[] { "pl.vavatech.auction.blc.model" });
 		emFactory.setJpaVendorAdapter(createHibernateAdapter());
 		emFactory.getJpaPropertyMap().putAll(getHibernateProperties());
 		return emFactory;
@@ -78,8 +79,7 @@ public class HibernateStandaloneRunner {
 	}
 
 	public static void main(String[] args) {
-		ApplicationContext context = new AnnotationConfigApplicationContext(
-				HibernateStandaloneRunner.class);
+		ApplicationContext context = new AnnotationConfigApplicationContext(HibernateStandaloneRunner.class);
 
 		EntityManagerFactory emf = context.getBean(EntityManagerFactory.class);
 		EntityManager em = emf.createEntityManager();
