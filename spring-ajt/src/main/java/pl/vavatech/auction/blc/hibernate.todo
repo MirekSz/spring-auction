@@ -1,0 +1,46 @@
+1.Analiza mapować encji Auction, Offer
+2. W pliku HibernateStandaloneRunner wykunujemy:
+
+* DLL
+* dodanie aukcji
+* pobiranie aukcji po id
+* aktualizacja aukcji
+* usuniecie aukcji
+
+* dodanie oferty dla aukcji 
+* pobranie ofert z aukcji (cache 1)
+* lazy false
+@NamedEntityGraph(name = "Auction.with.Offers", attributeNodes = @NamedAttributeNode("offers"))
+
+* usuniecie ofert z aukcji
+* usuwanie aukcji z ofertami
+
+
+* Wyszukanie aukcji po numerze param, single result
+* Wyszukanie aukcji do ktorych user zlozyl oferte
+* Wyszukanie aukcji które mają conajmniej 4 oferty
+* pobrać 10 aukcji pomijając 10 sortując po dacie
+
+
+* pobrać 10 aukcji pomijając 10 sortując po dacie odrazu z ofertami
+* indeks na numer i przenumerowanie
+* lazy exception
+
+*masive update
+*insert into select
+
+* pojo result
+*
+
+* blokowanie optymistyczne
+* pes
+* update select
+* scroll
+
+
+
+Auction find = em.find(Auction.class, id);
+CriteriaBuilder qb = em.getCriteriaBuilder();
+CriteriaQuery<Auction> criteria = qb.createQuery(Auction.class);
+Root<Auction> from = criteria.from(Auction.class);
+criteria.select(from).where(qb.equal(from.get("title"), "SSD"));
