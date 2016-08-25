@@ -19,13 +19,12 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import pl.vavatech.auction.blc.model.Auction;
-
 //https://docs.jboss.org/hibernate/orm/5.0/userGuide/en-US/html_single/#criteria
 //https://docs.jboss.org/hibernate/orm/5.0/userGuide/en-US/html_single/#hql
 @Configuration
 @PropertySource(value = { "classpath:config.properties" })
 public class HibernateStandaloneRunner {
+	private static EntityManager em;
 	@Value("${db.driverClassName}")
 	private String driverClassName;
 	@Value("${db.url}")
@@ -62,6 +61,8 @@ public class HibernateStandaloneRunner {
 		Map<String, Object> properties = new HashMap();
 		properties.put("hibernate.show_sql", true);
 		properties.put("hibernate.format_sql", true);
+		// properties.put("hibernate.ejb.interceptor",
+		// HibernateEmptyInterceptor.class.getName());
 
 		return properties;
 	}
@@ -78,16 +79,26 @@ public class HibernateStandaloneRunner {
 
 	}
 
+	static Long id;
+
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(HibernateStandaloneRunner.class);
 
 		EntityManagerFactory emf = context.getBean(EntityManagerFactory.class);
-		EntityManager em = emf.createEntityManager();
+		em = emf.createEntityManager();
+
+		inTransaction("add", () -> {
+		});
+	}
+
+	public static void inTransaction(String section, Runnable runnable) {
+		System.out.println("############### " + section);
 		em.getTransaction().begin();
-
-		em.persist(new Auction("SSD"));
-
+		runnable.run();
 		em.getTransaction().commit();
+		em.clear();
+		System.out.println("############### " + section);
+
 	}
 
 }
