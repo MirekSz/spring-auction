@@ -1,3 +1,5 @@
+Idπ z materia≥em opuszczamy modu≥ AOP i przechodzimy odrazu do MVC po czym po przerobieniu wszystkim modu≥Ûw z MVC, przechodzimy do AOP a poüniej wracamy do JPA
+
 Spring-core
 Sjald 102: Zadania: 1.0, 1.1, 1.2, 1.3, 1.4,1.5
 Sjald 130: Zadanie: 1.6,1.7,1.8

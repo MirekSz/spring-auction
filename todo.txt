@@ -1,6 +1,0 @@
--springdata
--cache
--scheduling
--testy
--asynch
--boot
