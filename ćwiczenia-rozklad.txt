@@ -1,4 +1,6 @@
-Id¹ z materia³em opuszczamy modu³ AOP i przechodzimy odrazu do MVC po czym po przerobieniu wszystkim modu³ów z MVC, przechodzimy do AOP a poŸniej wracamy do JPA
+Przerabiaj¹c materia³(slajdy) opuszczamy modu³ AOP i przechodzimy odrazu do MVC po czym po przerobieniu wszystkim modu³ów z MVC, przechodzimy do AOP a poŸniej wracamy do JPA
+
+Poni¿ej znajduje siê informacja które zadania przerabiamy w odniesieniu do prezentacji
 
 Spring-core
 Sjald 102: Zadania: 1.0, 1.1, 1.2, 1.3, 1.4,1.5
